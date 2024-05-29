@@ -26,16 +26,34 @@ const materials = [{
         ingredientOne: "Raw Prime Meat",
         ingredientTwo: "Hylian Rice",
         cookedDish: "Prime Meat and Rice Bowl"
+},{
+        id: 5,
+        ingredientOne: "Fresh Milk",
+        ingredientTwo: "Cane Sugar",
+        ingredientThree: "Raw Bird Thigh",
+        cookedDish: "Egg Pudding"
 }]
 
 const materialsArray = materials
 
 const meals = []
 
-const cook = (firstIngredient, secondIngredient) => {
+const cook = (firstIngredient, secondIngredient, thirdIngredient) => {
     for (const ingredient of materialsArray) {
-        if (firstIngredient === ingredient.ingredientOne && secondIngredient === ingredient.ingredientTwo) {
-            meals.push(ingredient.cookedDish)
+        /*
+        This line checks if the third ingredient is undefined 
+        because I have recipes that only have two ingredients and uses this if statement 
+        as I only want the recipe for two ingredient and two parameters
+        and have three parameters and all parameters are used at my level of thinking
+        */
+        if (thirdIngredient === undefined){ 
+            if (firstIngredient === ingredient.ingredientOne && secondIngredient === ingredient.ingredientTwo) {
+            meals.push(ingredient)
+        }
+        } else {
+            if (firstIngredient === ingredient.ingredientOne && secondIngredient === ingredient.ingredientTwo && thirdIngredient === ingredient.ingredientThree) {
+            meals.push(ingredient)
+            }
         }
     }
     return meals
@@ -43,10 +61,11 @@ const cook = (firstIngredient, secondIngredient) => {
 
 console.log('MEALS:')
 console.log('---------------')
-cook("Raw Prime Meat", "Hylian Rice")
+cook("Fresh Milk", "Cane Sugar", "Raw Bird Thigh")
 
 for (const meal of meals) {
-    console.log(`Success you made ${meal}!`)
-}
+        console.log(`Success! You made ${meal.cookedDish}!`)  
+    }
+
 
 
